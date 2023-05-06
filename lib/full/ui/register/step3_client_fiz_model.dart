@@ -1254,6 +1254,7 @@ class VerifyName {
         return 'error';
       }
     } catch (e) {
+      print(e);
       return 'error';
     }
   }

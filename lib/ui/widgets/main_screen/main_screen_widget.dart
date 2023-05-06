@@ -162,8 +162,9 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
         importance: Importance.max, priority: Priority.high);
     var iOSPlatformChannelSpecifics = const IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
-        android: androidPlatformChannelSpecifics,
-        iOS: iOSPlatformChannelSpecifics);
+      android: androidPlatformChannelSpecifics,
+    );
+    // iOS: iOSPlatformChannelSpecifics);
     flutterLocalNotificationsPlugin?.show(
       0,
       'Завершение',
