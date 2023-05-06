@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,6 +22,7 @@ class RegisterStep3ClientFizView extends StatefulWidget {
   final bool edit;
   final dynamic jdata;
   final bool swapeRole;
+
   RegisterStep3ClientFizView({
     Key? key,
     required this.edit,
@@ -231,6 +231,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   // bool isChecked1 = true;
   // bool isChecked2 = false;
+  final _contextisPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -316,7 +317,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     backgroundImage: base64img.text.length > 100
                         ? Image.memory(_image!, fit: BoxFit.cover).image
                         : Image.network(
-                                "http://ecarnet.kz:8081/profileimage?imagename=${base64img.text}",
+                                "http://185.116.193.86:8081/profileimage?imagename=${base64img.text}",
                                 fit: BoxFit.cover)
                             .image,
                   ),
@@ -632,7 +633,7 @@ _onBasicAlertPressed(context) {
       desc: AppLocalizations.of(context)!.uspeshnoSohran,
       buttons: [
         DialogButton(
-          onPressed: (context) async {
+          onPressed: () async {
             final _sessionDataProvider = SessionDataProvider();
             await _sessionDataProvider.setRoleType("1");
 
@@ -708,7 +709,7 @@ _onBasicAlertPressedUpdate(context) {
       desc: AppLocalizations.of(context)!.uspeshnoSohran,
       buttons: [
         DialogButton(
-          onPressed: (context) async {
+          onPressed: () async {
             final _sessionDataProvider = SessionDataProvider();
             await _sessionDataProvider.setRoleType("1");
 
@@ -757,7 +758,7 @@ _onBasicAlertPressed2(context) {
       desc: AppLocalizations.of(context)!.dannuiPolzovatelUsheVSisteme,
       buttons: [
         DialogButton(
-          onPressed: (context) => Navigator.of(context).pop(),
+          onPressed: () => Navigator.of(context).pop(),
           child: Text(
             AppLocalizations.of(context)!.prodolzhit,
             style: TextStyle(fontSize: 20),
@@ -792,7 +793,7 @@ _onBasicAlertPressed3(context) {
       desc: AppLocalizations.of(context)!.povtoritePopitku2,
       buttons: [
         DialogButton(
-          onPressed: (context) => Navigator.of(context).pop(),
+          onPressed: () => Navigator.of(context).pop(),
           child: Text(
             AppLocalizations.of(context)!.prodolzhit,
             style: TextStyle(fontSize: 20),

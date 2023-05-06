@@ -401,7 +401,8 @@ class _ProfileViewState extends State<ProfileView> {
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.red),
-                      commentHint: AppLocalizations.of(context)!.napishiteKomment,
+                      commentHint:
+                          AppLocalizations.of(context)!.napishiteKomment,
                       onCancelled: () {
                         clientfeedbackclose(
                           token: pm.token,
@@ -836,7 +837,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 .image
                             // : Image.memory(_image!, fit: BoxFit.cover).image,
                             : Image.network(
-                                    "http://ecarnet.kz:8081/profileimage?imagename=$img",
+                                    "http://185.116.193.86:8081/profileimage?imagename=$img",
                                     fit: BoxFit.cover)
                                 .image,
                       ),
@@ -1051,7 +1052,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 .image
                             // : Image.memory(_image!, fit: BoxFit.cover).image,
                             : Image.network(
-                                    "http://ecarnet.kz:8081/profileimage?imagename=$img",
+                                    "http://185.116.193.86:8081/profileimage?imagename=$img",
                                     fit: BoxFit.cover)
                                 .image,
                       ),
@@ -1215,7 +1216,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 .image
                             // : Image.memory(_image!, fit: BoxFit.cover).image,
                             : Image.network(
-                                    "http://ecarnet.kz:8081/profileimage?imagename=$img",
+                                    "http://185.116.193.86:8081/profileimage?imagename=$img",
                                     fit: BoxFit.cover)
                                 .image,
                       ),
@@ -1391,7 +1392,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 .image
                             // : Image.memory(_image!, fit: BoxFit.cover).image,
                             : Image.network(
-                                    "http://ecarnet.kz:8081/profileimage?imagename=$img",
+                                    "http://185.116.193.86:8081/profileimage?imagename=$img",
                                     fit: BoxFit.cover)
                                 .image,
                       ),
@@ -1636,7 +1637,7 @@ Future<dynamic> SheetBar(BuildContext context) {
             color: Colors.black,
           ),
         ),
-        onPressed: () {
+        onPressed: (context) {
           final provider = SessionDataProvider();
           provider.setSessionId(null);
           Navigator.of(context).pushNamedAndRemoveUntil(

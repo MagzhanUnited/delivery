@@ -191,7 +191,7 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
   void main() async {
     try {
       if (socket == null) {
-        socket = await Socket.connect('ecarnet.kz', 8088);
+        socket = await Socket.connect('185.116.193.86', 8088);
         print(
             'Connected to: ${socket!.remoteAddress.address}:${socket!.remotePort}');
         socket!.listen(
@@ -887,7 +887,7 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
               ),
             ],
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.pop(context);
             _launchURL(driverPhoneNumber);
           },
@@ -913,7 +913,7 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
               ),
             ],
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.pop(context);
             _launchURL(componyPhoneNumber);
           },
@@ -953,7 +953,7 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
               ),
             ],
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.pop(context);
             _launchURL(driverPhoneNumber);
           },
@@ -979,7 +979,7 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
               ),
             ],
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.pop(context);
             _launchURL(componyPhoneNumber);
           },

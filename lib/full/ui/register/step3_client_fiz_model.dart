@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:themoviedb/domain/api_client/api_client.dart';
 import 'package:themoviedb/domain/data_providers/session_data_provider.dart';
 
-String serverApi = "ecarnet.kz";
+String serverApi = "185.116.193.86"; //ecarnet.kz
 
 //драйвер жумысшы косу
 class AddCompanyDriver {
@@ -1228,6 +1228,7 @@ class VerifyName {
   VerifyName({required this.Name});
 
   Future<String> getName() async {
+    print('getName called');
     Uri url = Uri.parse('http://${serverApi}:8081/check');
 
     try {
@@ -1238,13 +1239,15 @@ class VerifyName {
       Map<String, Object> jsonMap = {
         "nickName": Name,
       };
-
+      print('before response');
       var response = await http.post(
         url,
         headers: headers,
         body: jsonEncode(jsonMap),
       );
-
+      print('after response');
+      print("response.statusCode ${response.statusCode}");
+      print(response.body);
       if (response.statusCode == 200) {
         return response.body;
       } else {

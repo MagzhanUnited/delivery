@@ -483,7 +483,7 @@ Future<dynamic> SheetBar(BuildContext context) {
             fontWeight: FontWeight.w500,
           ),
         ),
-        onPressed: () {
+        onPressed: (context) {
           // Navigator.push(
           //   context,
           //   MaterialPageRoute(builder: (context) => CurrentView()),

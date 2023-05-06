@@ -120,7 +120,7 @@ class _LoginInState extends State<LoginIn> {
                       _isRegisterProgress = false;
                     },
                   );
-                  print('cant start auth');
+                  print('cant start auth 123');
                 } catch (e) {
                   _isRegisterProgress = false;
                   print('Повторите попытку');

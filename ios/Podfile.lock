@@ -26,15 +26,15 @@ PODS:
     - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
-  - google_maps_flutter (0.0.1):
+  - google_maps_flutter_ios (0.0.1):
     - Flutter
     - GoogleMaps
-  - GoogleMaps (4.1.0):
-    - GoogleMaps/Maps (= 4.1.0)
-  - GoogleMaps/Base (4.1.0)
-  - GoogleMaps/Maps (4.1.0):
+  - GoogleMaps (5.2.0):
+    - GoogleMaps/Maps (= 5.2.0)
+  - GoogleMaps/Base (5.2.0)
+  - GoogleMaps/Maps (5.2.0):
     - GoogleMaps/Base
-  - image_picker (0.0.1):
+  - image_picker_ios (0.0.1):
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
@@ -60,8 +60,8 @@ DEPENDENCIES:
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
-  - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
-  - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
@@ -100,10 +100,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
-  google_maps_flutter:
-    :path: ".symlinks/plugins/google_maps_flutter/ios"
-  image_picker:
-    :path: ".symlinks/plugins/image_picker/ios"
+  google_maps_flutter_ios:
+    :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   permission_handler:
@@ -124,18 +124,18 @@ SPEC CHECKSUMS:
   bs_flutter_responsive: 1b93f3f2f184d7a2025710c37760fadbb8084516
   bs_flutter_selectbox: 6f8f2635cb0e3f10096fcd774af6d90272bb089b
   bs_flutter_utils: 8f7e9550c45adfa0d9b77d5ac395bc33b6d18eb3
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
-  google_maps_flutter: abdb8dee6c52d4be36ad131ee6ebfacd14417c5a
-  GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
-  image_picker: 0d37d1cb66231c2473a0e3ccb8d062d0c2b3d297
+  google_maps_flutter_ios: 3e0b99383a8003b8169d06e7e324170bd0424105
+  GoogleMaps: 025272d5876d3b32604e5c080dc25eaf68764693
+  image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
-  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
-  webview_flutter_wkwebview: 005fbd90c888a42c5690919a1527ecc6649e1162
+  url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
+  webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
-PODFILE CHECKSUM: 5a1da5ef7719ad19d09b244fb60a931892af3de7
+PODFILE CHECKSUM: f84871ff38a58b2aae0cfe6a807bc07c8782000d
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1

@@ -94,7 +94,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                                 .image
                             // : Image.memory(_image!, fit: BoxFit.cover).image,
                             : Image.network(
-                                    "http://ecarnet.kz:8081/profileimage?imagename=$img",
+                                    "http://185.116.193.86:8081/profileimage?imagename=$img",
                                     fit: BoxFit.cover)
                                 .image,
                       ),

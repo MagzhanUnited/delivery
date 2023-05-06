@@ -195,7 +195,7 @@ class _AddCardocState extends State<AddCardoc> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: (context) {
                               viewPhoto(
                                 doc[index]['image'],
                                 doc[index]['docNameRu'].toString(),
@@ -212,7 +212,7 @@ class _AddCardocState extends State<AddCardoc> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: (context) {
                               takePhoto(doc[index]['docTypeId']);
                               Navigator.pop(context);
                             },
@@ -226,7 +226,7 @@ class _AddCardocState extends State<AddCardoc> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: (context) {
                               selectImage(doc[index]['docTypeId']);
                               Navigator.pop(context);
                             },

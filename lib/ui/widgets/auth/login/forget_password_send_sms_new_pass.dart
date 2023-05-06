@@ -110,9 +110,11 @@ class _SendNewPassState extends State<SendNewPass> {
                   ),
                   ClipRRect(
                     child: SizedBox(
-                        width: 100, child: Image.asset(provider.selectedThemeMode == ThemeMode.dark
-                            ? 'images/logo2.png'
-                            : 'images/logo.png')),
+                        width: 100,
+                        child: Image.asset(
+                            provider.selectedThemeMode == ThemeMode.dark
+                                ? 'images/logo2.png'
+                                : 'images/logo.png')),
                   ),
                   SizedBox(height: 60),
                   Text(
@@ -333,7 +335,7 @@ class _SendNewPassState extends State<SendNewPass> {
                         child: Text(
                           _start == 0
                               ? "${AppLocalizations.of(context)!.otpravitkod}"
-                              : '${AppLocalizations.of(context)!.otpravitkodpovtorno(_start.toString())}',
+                              : '${AppLocalizations.of(context)!.otpravitkodpovtorno(_start.toString(), '12')}',
                           style: TextStyle(fontSize: 15),
                         ),
                       ),

@@ -34,6 +34,7 @@ class _SendCodeState extends State<SendCode> {
 
   @override
   void initState() {
+    print('object 37');
     super.initState();
     MessageLogin = '';
     MessagePass1 = '';
@@ -120,6 +121,7 @@ class _SendCodeState extends State<SendCode> {
                   child: TextFormField(
                     textInputAction: TextInputAction.next,
                     controller: pass1,
+                    keyboardType: TextInputType.text,
                     obscureText: false,
                     cursorColor: kPrimaryColor,
                     style: TextStyle(fontSize: 15),
@@ -205,6 +207,7 @@ class _SendCodeState extends State<SendCode> {
             pass2.text.isNotEmpty) &&
         (pass1.text == pass2.text)) {
       try {
+        print('try');
         VerifyName(Name: username.text.replaceAll(' ', '')).getName().then(
           (value) {
             print('Response: $value');
@@ -225,9 +228,9 @@ class _SendCodeState extends State<SendCode> {
 
                 if (model.canStartAuth == true) {
                   model.sendCode(context);
-                  print('can start auth');
+                  print('can start auth 230');
                 } else {
-                  print('cant start auth');
+                  print('cant start auth 232');
                 }
 
                 // Navigator.of(context).pushNamed(
@@ -263,7 +266,7 @@ class _SendCodeState extends State<SendCode> {
             }
           },
         );
-        print('cant start auth');
+        print('cant start auth 269');
       } catch (e) {
         _isRegisterProgress = false;
       }
@@ -304,7 +307,7 @@ class _AuthButtonPhoneWidget extends StatelessWidget {
       model?.sendCode(context);
       print('can start auth');
     } else {
-      print('cant start auth');
+      print('cant start auth 309');
     }
   }
 

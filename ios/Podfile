@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '11.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -9,7 +9,6 @@ project 'Runner', {
   'Profile' => :release,
   'Release' => :release,
 }
-
 def flutter_root
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
   unless File.exist?(generated_xcode_build_settings_path)
@@ -30,7 +29,7 @@ flutter_ios_podfile_setup
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
-
+  # pod 'GoogleMaps'
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 
@@ -46,7 +45,7 @@ post_install do |installer|
         'PERMISSION_LOCATION=1',
 
         ## dart: PermissionGroup.camera
-        'PERMISSION_CAMERA=1'
+        'PERMISSION_CAMERA=1',
 
         ## dart: PermissionGroup.notification
         'PERMISSION_NOTIFICATIONS=1',

@@ -169,7 +169,7 @@ class _RegisterStep4DriverFizViewState
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: (context) {
                               viewPhoto(
                                 doc[index]['image'],
                                 doc[index]['docNameRu'].toString(),
@@ -186,7 +186,7 @@ class _RegisterStep4DriverFizViewState
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: (context) {
                               takePhoto(doc[index]['docTypeId']);
                               Navigator.of(context).pop();
                             },
@@ -200,7 +200,7 @@ class _RegisterStep4DriverFizViewState
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: (context) {
                               selectImage(doc[index]['docTypeId']);
                               Navigator.of(context).pop();
                             },
@@ -390,12 +390,10 @@ _onBasicAlertPressed(context) {
           onPressed: () async {
             final _sessionDataProvider = SessionDataProvider();
             await _sessionDataProvider.setRoleType('3');
-            
+
             Navigator.of(context).pushReplacementNamed(
               MainNavigationRouteNames.mainScreen,
             );
-
-            
           },
           child: Text(
             "Продолжить",

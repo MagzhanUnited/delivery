@@ -65,7 +65,6 @@ class _VerifyOtpState extends State<VerifyOtp> {
     final provider = pv.Provider.of<LocaleProvider>(context);
 
     return Scaffold(
-      
       // resizeToAvoidBottomInset: false,
       // backgroundColor: Color(0xfff7f6fb),
       body: SingleChildScrollView(
@@ -85,9 +84,10 @@ class _VerifyOtpState extends State<VerifyOtp> {
                 // borderRadius: BorderRadius.circular(20),
                 child: SizedBox(
                   width: 100,
-                  child: Image.asset(provider.selectedThemeMode == ThemeMode.dark
-                            ? 'images/logo2.png'
-                            : 'images/logo.png'),
+                  child: Image.asset(
+                      provider.selectedThemeMode == ThemeMode.dark
+                          ? 'images/logo2.png'
+                          : 'images/logo.png'),
                 ),
               ),
               SizedBox(
@@ -197,7 +197,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
                   child: Text(
                     _start == 0
                         ? "${AppLocalizations.of(context)!.otpravitkod}"
-                        : '${AppLocalizations.of(context)!.otpravitkodpovtorno(_start.toString())}',
+                        : '${AppLocalizations.of(context)!.otpravitkodpovtorno(_start.toString(), '12')}',
                     style: TextStyle(fontSize: 12),
                   ),
                   style: ButtonStyle(
@@ -233,7 +233,7 @@ class _AuthButtonCodeWidget extends StatelessWidget {
       model?.authCode(context);
       print('can start auth');
     } else {
-      print('cant start auth');
+      print('cant start auth 236');
     }
   }
 

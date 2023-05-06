@@ -47,6 +47,7 @@ dependencies:
   bubble_tab_indicator: ^0.1.4
   web_socket_channel: ^2.1.0
   flutter_local_notifications: ^6.0.0
+  package_info_plus_web: ^2.0.0
   
 dev_dependencies:
   flutter_test:

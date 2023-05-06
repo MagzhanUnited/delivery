@@ -293,7 +293,7 @@ class _PostScreenState extends State<PostScreen> {
                               MaterialPageRoute(
                                 builder: (context) => ViewNetworkImg(
                                   NetImgLink:
-                                      'http://ecarnet.kz:8081/images?imagename=${widget.question['image']}',
+                                      'http://185.116.193.86:8081/images?imagename=${widget.question['image']}',
                                 ),
                               ),
                             );
@@ -309,7 +309,7 @@ class _PostScreenState extends State<PostScreen> {
                                 // size:
                                 //     Size.fromRadius(200),
                                 child: Image.network(
-                                    'http://ecarnet.kz:8081/images?imagename=${widget.question['image']}',
+                                    'http://185.116.193.86:8081/images?imagename=${widget.question['image']}',
                                     fit: BoxFit.fill),
                               ),
                             ),
@@ -718,7 +718,7 @@ class _PostScreenState extends State<PostScreen> {
         //                               MaterialPageRoute(
         //                                 builder: (context) => ViewNetworkImg(
         //                                   NetImgLink:
-        //                                       'http://ecarnet.kz:8081/images?imagename=${widget.question['image']}',
+        //                                       'http://185.116.193.86.kz:8081/images?imagename=${widget.question['image']}',
         //                                 ),
         //                               ),
         //                             );
@@ -734,7 +734,7 @@ class _PostScreenState extends State<PostScreen> {
         //                                 // size:
         //                                 //     Size.fromRadius(200),
         //                                 child: Image.network(
-        //                                     'http://ecarnet.kz:8081/images?imagename=${widget.question['image']}',
+        //                                     'http://185.116.193.86.kz:8081/images?imagename=${widget.question['image']}',
         //                                     fit: BoxFit.fill),
         //                               ),
         //                             ),
@@ -755,7 +755,7 @@ class _PostScreenState extends State<PostScreen> {
         //                             //   MaterialPageRoute(
         //                             //     builder: (context) => ViewNetworkImg(
         //                             //       NetImgLink:
-        //                             //           'http://ecarnet.kz:8081/images?imagename=${widget.question['image']}',
+        //                             //           'http://185.116.193.86.kz:8081/images?imagename=${widget.question['image']}',
         //                             //     ),
         //                             //   ),
         //                             // );
@@ -1147,7 +1147,7 @@ class _PostScreenState extends State<PostScreen> {
               color: AppColors.mainOrange,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
 
             GetForumDeleteComment(

@@ -35,7 +35,7 @@ class _TestSocketState extends State<TestSocket> {
   void main() async {
     try {
       if (socket == null) {
-        socket = await Socket.connect('ecarnet.kz', 8088);
+        socket = await Socket.connect('185.116.193.86', 8088);
         print(
             'Connected to: ${socket!.remoteAddress.address}:${socket!.remotePort}');
         socket!.listen(
@@ -140,8 +140,6 @@ class _TestSocketState extends State<TestSocket> {
               ),
             ),
             SizedBox(height: 20),
-            
-            
             Spacer(),
             ElevatedButton(
               onPressed: () async {

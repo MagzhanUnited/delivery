@@ -44,7 +44,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
   String appBarTitle = '';
   FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
   final WebSocketChannel _channel = WebSocketChannel.connect(
-    Uri.parse('ws://ecarnet.kz:8081/ws'),
+    Uri.parse('ws://185.116.193.86:8081/ws'),
   );
 
   @override
@@ -356,7 +356,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
 
             Navigator.push(
@@ -374,7 +374,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
             Navigator.push(
               context,
@@ -404,7 +404,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
 
             Navigator.push(
@@ -422,7 +422,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
             Navigator.push(
               context,
@@ -439,7 +439,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
             Navigator.push(
               context,
@@ -469,7 +469,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
 
             Navigator.push(
@@ -491,7 +491,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
             Navigator.push(
               context,

@@ -144,7 +144,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                                             child: Container(
                                               width: double.maxFinite,
                                               child: Image.network(
-                                                'http://ecarnet.kz:8082/newsimage/${news[index]['newsId']}',
+                                                'http://185.116.193.86:8082/newsimage/${news[index]['newsId']}',
                                                 height: 140,
                                                 fit: BoxFit.cover,
                                               ),

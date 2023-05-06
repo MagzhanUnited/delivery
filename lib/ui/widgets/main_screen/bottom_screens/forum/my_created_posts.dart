@@ -546,7 +546,7 @@ class _MyCreaetedPostsPageState extends State<MyCreaetedPostsPage> {
               color: Colors.black,
             ),
           ),
-          onPressed: () {
+          onPressed: (context) {
             Navigator.of(context).pop();
 
             GetForumDeleteTems(
@@ -664,7 +664,7 @@ Future<dynamic> SheetBar(BuildContext context, String token, int titleId) {
             color: Colors.black,
           ),
         ),
-        onPressed: () {
+        onPressed: (context) {
           Navigator.of(context).pop();
           print('yes');
         },

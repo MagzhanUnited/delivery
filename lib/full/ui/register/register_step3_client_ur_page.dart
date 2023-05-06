@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:flutter/material.dart';
@@ -326,7 +325,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     backgroundImage: base64img.text.length > 100
                         ? Image.memory(_image!, fit: BoxFit.cover).image
                         : Image.network(
-                                "http://ecarnet.kz:8081/profileimage?imagename=${base64img.text}",
+                                "http://185.116.193.86:8081/profileimage?imagename=${base64img.text}",
                                 fit: BoxFit.cover)
                             .image,
                   ),
@@ -363,7 +362,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: (context) {
                       takePhoto();
                       Navigator.pop(context);
                     },
@@ -377,7 +376,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: (context) {
                       selectImage();
                       Navigator.pop(context);
                     },

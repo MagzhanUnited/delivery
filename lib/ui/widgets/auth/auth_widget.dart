@@ -171,9 +171,9 @@ class _AuthButtonPhoneWidget extends StatelessWidget {
     final model = NotifierProvider.watchOnModel<AuthModel>(context);
     if (model?.canStartAuth == true) {
       model?.authPhone(context);
-      print('can start auth');
+      print('can start auth 174');
     } else {
-      print('cant start auth');
+      print('cant start auth 176');
     }
   }
 
@@ -217,9 +217,9 @@ class _AuthButtonCodeWidget extends StatelessWidget {
     final model = NotifierProvider.watchOnModel<AuthModel>(context);
     if (model?.canStartAuth == true) {
       model?.authCode(context);
-      print('can start auth');
+      print('can start auth 220');
     } else {
-      print('cant start auth');
+      print('cant start auth 222');
     }
   }
 

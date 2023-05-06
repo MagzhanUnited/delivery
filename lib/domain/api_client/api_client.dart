@@ -252,10 +252,10 @@ class ApiClient {
       'phoneNumber': phoneNumber,
       'guestCode': int.parse(codeSms)
     };
-    // final result = _post3('http://ecarnet.kz:8081/guesttoken', parameters,
+    // final result = _post3('http://185.116.193.86:8081/guesttoken', parameters,
     //     parser, <String, dynamic>{'phoneNumber': phoneNumber});
 
-    final url = Uri.parse('http://ecarnet.kz:8081/guesttoken');
+    final url = Uri.parse('http://185.116.193.86:8081/guesttoken');
     Map<String, String> headers = {
       "Content-type": "application/json",
     };
@@ -374,7 +374,7 @@ class ApiClient {
       'password': pass
     };
     final result = _post2(
-      'http://ecarnet.kz:8081/createguest',
+      'http://185.116.193.86:8081/createguest',
       parameters,
       parser,
       <String, dynamic>{
@@ -394,7 +394,7 @@ class ApiClient {
       return code;
     };
     final result = _postRegData(
-      'http://ecarnet.kz:8081/complindi',
+      'http://185.116.193.86:8081/complindi',
       parameters,
       parser,
       <String, dynamic>{'phoneNumber': 'phoneNumber'},
@@ -413,7 +413,7 @@ class ApiClient {
       return code;
     };
     final result = _postRegClientCompanyData(
-      'http://ecarnet.kz:8081/complcompany',
+      'http://185.116.193.86:8081/complcompany',
       parameters,
       parser,
       <String, dynamic>{'phoneNumber': 'phoneNumber'},

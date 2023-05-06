@@ -314,7 +314,7 @@ class _MyCurrentOrdersState extends State<MyCurrentOrders> {
   void main() async {
     try {
       if (socket == null) {
-        socket = await Socket.connect('ecarnet.kz', 8088);
+        socket = await Socket.connect('185.116.193.86', 8088);
         print(
             'Connected to: ${socket!.remoteAddress.address}:${socket!.remotePort}');
         socket!.listen(
@@ -1708,7 +1708,7 @@ Future<dynamic> SheetBarClient(BuildContext context, driverPhoneNumber,
             ),
           ],
         ),
-        onPressed: () {
+        onPressed: (context) {
           Navigator.pop(context);
           _launchURL(driverPhoneNumber);
         },
@@ -1734,7 +1734,7 @@ Future<dynamic> SheetBarClient(BuildContext context, driverPhoneNumber,
             ),
           ],
         ),
-        onPressed: () {
+        onPressed: (context) {
           Navigator.pop(context);
           _launchURL(componyPhoneNumber);
         },
@@ -1774,7 +1774,7 @@ Future<dynamic> SheetBarDriverCompany(BuildContext context, driverPhoneNumber,
             ),
           ],
         ),
-        onPressed: () {
+        onPressed: (context) {
           Navigator.pop(context);
           _launchURL(driverPhoneNumber);
         },
@@ -1800,7 +1800,7 @@ Future<dynamic> SheetBarDriverCompany(BuildContext context, driverPhoneNumber,
             ),
           ],
         ),
-        onPressed: () {
+        onPressed: (context) {
           Navigator.pop(context);
           _launchURL(componyPhoneNumber);
         },
@@ -1840,7 +1840,7 @@ Future<dynamic> SheetBar(BuildContext context) {
             fontWeight: FontWeight.w500,
           ),
         ),
-        onPressed: () {
+        onPressed: (context) {
           // Navigator.push(
           //   context,
           //   MaterialPageRoute(builder: (context) => CurrentView()),

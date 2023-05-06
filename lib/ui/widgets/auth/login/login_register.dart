@@ -288,7 +288,7 @@ class _LoginRegState extends State<LoginReg> {
             }
           },
         );
-        print('cant start auth');
+        print('cant start auth 291');
       } catch (e) {
         _isRegisterProgress = false;
       }

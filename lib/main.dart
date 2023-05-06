@@ -11,12 +11,12 @@ void main() async {
 
   await Permission.location.request();
   await Permission.notification.request();
-  
-  if (Platform.isIOS){
+
+  if (Platform.isIOS) {
     await Permission.camera.request();
     requestCameraPermission();
   }
-  
+
   requestLocationPermission();
   requestNotificationPermission();
 

@@ -451,7 +451,7 @@ Future<dynamic> SheetBar(BuildContext context) {
             fontWeight: FontWeight.w500,
           ),
         ),
-        onPressed: () {
+        onPressed: (context) {
           // Navigator.push(
           //   context,
           //   MaterialPageRoute(builder: (context) => CurrentView()),
@@ -461,7 +461,7 @@ Future<dynamic> SheetBar(BuildContext context) {
       ),
     ],
     cancelAction: CancelAction(
-        title:  Text(
+        title: Text(
       AppLocalizations.of(context)!.zakrit,
       style: TextStyle(color: Colors.blueAccent),
     )),

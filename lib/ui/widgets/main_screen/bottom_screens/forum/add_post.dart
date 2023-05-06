@@ -371,7 +371,7 @@ class _AddPostPageState extends State<AddPostPage> {
     String titleText,
     String descText,
   ) async {
-    final String url = 'http://ecarnet.kz:8081/postforumtitle';
+    final String url = 'http://185.116.193.86:8081/postforumtitle';
 
     Map<String, String> headers = {
       "Content-type": "application/json",

@@ -214,7 +214,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                     child: Container(
                                       width: double.maxFinite,
                                       child: Image.network(
-                                        'http://ecarnet.kz:8082/newsimage/${news['newsId']}',
+                                        'http://185.116.193.86:8082/newsimage/${news['newsId']}',
                                         height: 140,
                                         fit: BoxFit.cover,
                                       ),
@@ -306,7 +306,7 @@ class _NewsDetailState extends State<NewsDetail> {
                               children: <Widget>[
                                 GestureDetector(
                                   onTap: () {
-                                    print('object');
+                                    print('object 309');
                                     initLike();
                                   },
                                   child: Row(
@@ -484,7 +484,8 @@ class _NewsDetailState extends State<NewsDetail> {
                                       );
                                     }
                                   },
-                                  label: Text(AppLocalizations.of(context)!.otpravit),
+                                  label: Text(
+                                      AppLocalizations.of(context)!.otpravit),
                                   icon: Image.asset("images/11check.png",
                                       width: 16,
                                       height: 16,

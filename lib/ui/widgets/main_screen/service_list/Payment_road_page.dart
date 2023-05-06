@@ -12,7 +12,7 @@ class PaymentRoadView extends StatefulWidget {
 
 class _PaymentRoadViewState extends State<PaymentRoadView> {
   final WebSocketChannel _channel = WebSocketChannel.connect(
-    Uri.parse('ws://ecarnet.kz:8081/ws'),
+    Uri.parse('ws://185.116.193.86:8081/ws'),
   );
 
   // @override
