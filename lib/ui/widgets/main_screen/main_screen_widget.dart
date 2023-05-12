@@ -82,12 +82,13 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
 
     var initializationSettingsAndroid =
         const AndroidInitializationSettings('@drawable/ic_flutternotification');
-    var initializationSettingsIOS = const IOSInitializationSettings();
+    var initializationSettingsIOS = const DarwinInitializationSettings();
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    flutterLocalNotificationsPlugin?.initialize(initializationSettings,
-        onSelectNotification: onSelectNotification);
+    flutterLocalNotificationsPlugin?.initialize(
+      initializationSettings, //onSelectNotification: onSelectNotification
+    );
   }
 
   Future<dynamic> onSelectNotification(String? payload) async {
@@ -122,9 +123,12 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
   Future _showNotification([data]) async {
     // Уведомления
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
-        'your channel id', 'your channel name', 'your channel description',
-        importance: Importance.max, priority: Priority.high);
-    var iOSPlatformChannelSpecifics = const IOSNotificationDetails();
+        'your channel id', 'your channel name',
+        channelDescription: 'your channel description',
+        importance: Importance.max,
+        priority: Priority.high);
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(threadIdentifier: 'thread_id');
     var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
@@ -140,9 +144,13 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
   Future _showNotificationMyOrder([data]) async {
     // Мои заказы
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
-        'your channel id', 'your channel name', 'your channel description',
-        importance: Importance.max, priority: Priority.high);
-    var iOSPlatformChannelSpecifics = const IOSNotificationDetails();
+        'your channel id', 'your channel name',
+        channelDescription: 'your channel description',
+        importance: Importance.max,
+        priority: Priority.high);
+
+    var iOSPlatformChannelSpecifics =
+        const DarwinNotificationDetails(threadIdentifier: 'thread_id');
     var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
@@ -158,9 +166,12 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
   Future _showNotificationHistory([data]) async {
     // История
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
-        'your channel id', 'your channel name', 'your channel description',
-        importance: Importance.max, priority: Priority.high);
-    var iOSPlatformChannelSpecifics = const IOSNotificationDetails();
+        'your channel id', 'your channel name',
+        channelDescription: 'your channel description',
+        importance: Importance.max,
+        priority: Priority.high);
+    var iOSPlatformChannelSpecifics =
+        const DarwinNotificationDetails(threadIdentifier: 'thread_id');
     var platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
     );

@@ -46,7 +46,7 @@ dependencies:
   webview_flutter: ^3.0.4
   bubble_tab_indicator: ^0.1.4
   web_socket_channel: ^2.1.0
-  flutter_local_notifications: ^6.0.0
+  flutter_local_notifications: ^14.0.0+2
   package_info_plus_web: ^2.0.0
   get: ^4.6.5
   
