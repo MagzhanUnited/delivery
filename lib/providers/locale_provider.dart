@@ -20,7 +20,7 @@ class LocaleProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeMode selectedThemeMode = ThemeMode.system;
+  ThemeMode selectedThemeMode = ThemeMode.light;
 
   void setSelectedThemeMode(ThemeMode _themeMode) {
     selectedThemeMode = _themeMode;

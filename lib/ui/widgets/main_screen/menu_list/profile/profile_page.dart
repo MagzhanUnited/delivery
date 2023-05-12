@@ -5,6 +5,7 @@ import 'dart:typed_data';
 
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:rating_dialog/rating_dialog.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:themoviedb/domain/data_providers/session_data_provider.dart';
@@ -29,6 +30,7 @@ import 'swape_role.dart';
 
 import 'package:provider/provider.dart';
 import 'package:themoviedb/providers/locale_provider.dart';
+import '../../../../../controllers/location_controller.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -786,7 +788,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   Container sysUserType4(BuildContext context, ProfileModel? model,
       String? phoneNumber, String? ButtonName) {
-    String img = jData["clientCompany"]['photo'];
+    String img = jData == null ? "" : jData["clientCompany"]['photo'];
     final provider = Provider.of<LocaleProvider>(context);
 
     return Container(
@@ -1624,6 +1626,7 @@ class SerialsListWidget extends StatelessWidget {
 }
 
 Future<dynamic> SheetBar(BuildContext context) {
+  LocationController locationController = Get.find();
   return showAdaptiveActionSheet(
     context: context,
     title: Text(AppLocalizations.of(context)!.vyDeistviVuiti),
@@ -1638,6 +1641,7 @@ Future<dynamic> SheetBar(BuildContext context) {
           ),
         ),
         onPressed: (context) {
+          locationController.start.value = false;
           final provider = SessionDataProvider();
           provider.setSessionId(null);
           Navigator.of(context).pushNamedAndRemoveUntil(

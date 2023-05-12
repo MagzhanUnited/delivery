@@ -6,6 +6,7 @@ import 'dart:typed_data';
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/instance_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:themoviedb/domain/data_providers/session_data_provider.dart';
 import 'package:themoviedb/full/ui/order/order_datail_card.dart';
@@ -15,6 +16,7 @@ import 'package:themoviedb/ui/navigation/main_navigation.dart';
 import 'package:themoviedb/ui/widgets/main_screen/menu_list/profile/profile_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../../controllers/location_controller.dart';
 import '../../../app/my_app.dart';
 import '../../menu_list/analitika/AppStat.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -34,16 +36,17 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
 
   final pm = ProfileModel();
 
-  int carId = 0;
+  // int carId = 0;
 
-  bool _start = false;
-  Timer? timer;
+  // bool _start = false;
+  // Timer? timer;
+  LocationController locationController = Get.find();
 
   @override
   void initState() {
-    _start = false;
-    socket = null;
-    carId = 0;
+    // _start = false;
+    // locationController.socket = null;
+    locationController.carId.value = 0;
 
     super.initState();
 
@@ -52,7 +55,7 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
 
     pm.setupLocale(context).then(
       (value) async {
-        if (pm.sysUserType == "3") {
+        if (pm.sysUserType == "3" || pm.sysUserType == "5") {
           await GetCarId(
             token: pm.token.toString(),
           ).getListClient().then(
@@ -69,7 +72,7 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
                 print('GetCarId sucsess');
 
                 try {
-                  carId = int.parse(value);
+                  locationController.carId.value = int.parse(value);
                 } catch (e) {
                   print('Ошибка при парсинге GetCarId');
                 }
@@ -183,62 +186,76 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
 
   @override
   void dispose() {
-    timer?.cancel();
+    // timer?.cancel();
     super.dispose();
   }
 
-  Socket? socket = null;
-  void main() async {
+  Future<bool> isTcpConnectionAlive(String host, int port) async {
     try {
-      if (socket == null) {
-        socket = await Socket.connect('185.116.193.86', 8088);
-        print(
-            'Connected to: ${socket!.remoteAddress.address}:${socket!.remotePort}');
-        socket!.listen(
-          (Uint8List data) {
-            final serverResponse = String.fromCharCodes(data);
-            print('Server: $serverResponse');
-          },
-
-          onError: (error) {
-            print(error);
-            socket!.destroy();
-            socket = null;
-            setState(() {});
-          },
-
-          // handle server ending connection
-          onDone: () {
-            socket = null;
-            print('Server left.');
-            socket!.destroy();
-            setState(() {});
-          },
-        );
-      }
-
-      await sendMessage(socket!, 'Banana');
-    } catch (e) {
-      socket = null;
-      print('socket error ' + e.toString());
+      final socket = await Socket.connect(host, port);
+      socket.destroy();
+      return true;
+    } on SocketException catch (_) {
+      return false;
     }
   }
 
-  Future<void> sendMessage(Socket socket, String message) async {
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((value) {
-      var temp = '${value.latitude}/${value.longitude}/${carId}/carnet';
+  // void main() async {
+  //   try {
+  //     if (locationController.socket.value == null) {
+  //       locationController.socket.value =
+  //           await Socket.connect('185.116.193.86', 8088);
+  //       print(
+  //           'Connected to: ${locationController.socket.value!.remoteAddress.address}:${locationController.socket.value!.remotePort}');
+  //       locationController.socket.value!.listen(
+  //         (Uint8List data) {
+  //           final serverResponse = String.fromCharCodes(data);
+  //           print('Server: $serverResponse');
+  //         },
 
-      try {
-        socket.write(temp);
+  //         onError: (error) {
+  //           print(locationController.socket.value);
+  //           print(error);
+  //           locationController.socket.value!.destroy();
+  //           locationController.socket.value = null;
+  //           setState(() {});
+  //         },
 
-        print('Client: $temp');
-      } catch (e) {
-        print("sendMessage ERROR " + e.toString());
-      }
-    });
-    // await Future.delayed(Duration(seconds: 1));
-  }
+  //         // handle server ending connection
+  //         onDone: () {
+  //           locationController.socket.value = null;
+  //           print('Server left.');
+  //           // locationController.socket.value!.destroy();
+  //           setState(() {});
+  //         },
+  //       );
+  //     }
+
+  //     if (locationController.start.value) {
+  //       await sendMessage(locationController.socket.value!, 'Banana');
+  //     }
+  //   } catch (e) {
+  //     locationController.socket.value = null;
+  //     print('socket error ' + e.toString());
+  //   }
+  // }
+
+  // Future<void> sendMessage(Socket socket, String message) async {
+  //   Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+  //       .then((value) {
+  //     var temp =
+  //         '${value.latitude}/${value.longitude}/${locationController.carId.value}/carnet';
+
+  //     try {
+  //       socket.write(temp);
+
+  //       print('Client: $temp');
+  //     } catch (e) {
+  //       print("sendMessage ERROR " + e.toString());
+  //     }
+  //   });
+  //   // await Future.delayed(Duration(seconds: 1));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -251,35 +268,63 @@ class _MyAppOrder1State extends State<MyAppOrder1> {
                 : MyOrders(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: carId <= 0
-          ? SizedBox()
+      floatingActionButton: locationController.carId.value <= 0
+          ? TextButton(onPressed: null, child: Text(''))
           : FloatingActionButton.extended(
-              onPressed: () {
-                _start = !_start;
+              onPressed: () async {
+                locationController.start.value =
+                    !locationController.start.value;
 
-                if (_start) {
-                  timer = Timer.periodic(
-                      Duration(seconds: 10), (Timer t) => main());
+                try {
+                  if (locationController.start.value) {
+                    try {
+                      locationController.timeStart(locationController);
+                      // timer = Timer.periodic(
+                      //   Duration(seconds: 10),
+                      //   (Timer t) =>
+                      //       locationController.main1(locationController),
+                      // );
+                    } catch (e) {
+                      print(e);
+                    }
 
-                  print('Connect');
-                } else {
-                  try {
-                    socket!.flush();
-                    socket!.destroy();
-                    socket = null;
+                    print('Connect');
+                  } else {
+                    try {
+                      // locationController.socket.value!.flush();
+                      print(
+                          "Socked value: ${locationController.socket.value == null}");
+                      bool isAlive =
+                          await isTcpConnectionAlive('185.116.193.86', 8088);
+                      if (isAlive) {
+                        if (locationController.socket.value != null) {
+                          locationController.socket.value!.destroy();
+                        }
+                        // locationController.socket.value = null;
+                      }
 
-                    timer?.cancel();
-                    print('Disconnect');
-                    setState(() {});
-                  } catch (e) {
-                    print("Disconnect error ${e.toString()}");
+                      // locationController.socket.value = null;
+
+                      // timer?.cancel();
+                      print('Disconnect');
+                      setState(() {});
+                    } catch (e) {
+                      print("Disconnect error ${e.toString()}");
+                    }
                   }
+                } catch (e) {
+                  print(e);
                 }
 
                 setState(() {});
+                print("Socked value: ${locationController.socket.value}");
+                print('finished');
               },
-              backgroundColor: _start ? Colors.green : Colors.grey,
-              icon: _start ? Icon(Icons.location_on) : Icon(Icons.location_off),
+              backgroundColor:
+                  locationController.start.value ? Colors.green : Colors.grey,
+              icon: locationController.start.value
+                  ? Icon(Icons.location_on)
+                  : Icon(Icons.location_off),
               label: Text(AppLocalizations.of(context)!.mestopolozhenie),
             ),
     );

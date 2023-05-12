@@ -335,7 +335,7 @@ class _SendNewPassState extends State<SendNewPass> {
                         child: Text(
                           _start == 0
                               ? "${AppLocalizations.of(context)!.otpravitkod}"
-                              : '${AppLocalizations.of(context)!.otpravitkodpovtorno(_start.toString(), '12')}',
+                              : '${AppLocalizations.of(context)!.otpravitkodpovtorno(_start.toString(), '30')}',
                           style: TextStyle(fontSize: 15),
                         ),
                       ),

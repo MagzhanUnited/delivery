@@ -570,6 +570,20 @@ class _CurrentViewState extends State<CurrentView> {
 
                                 if (pm.sysUserType == "0") {
                                   _onBasicAlertPressed(context);
+                                } else if (pm.sysUserType == "4" &&
+                                    drivers.length == 0) {
+                                  const snackBar = SnackBar(
+                                    content: Text('У вас нет водителей'),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                } else if (pm.sysUserType == "4" &&
+                                    cars.length == 0) {
+                                  const snackBar = SnackBar(
+                                    content: Text('У вас нет машин'),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
                                 } else if (pm.sysUserType == "4") {
                                   Navigator.push(
                                     context,

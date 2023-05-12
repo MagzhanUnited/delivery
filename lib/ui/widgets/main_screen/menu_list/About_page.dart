@@ -30,15 +30,22 @@ class AutoCO extends StatefulWidget {
 class _AutoCOState extends State<AutoCO> {
   PickResult? selectedPlaceA;
   PickResult? selectedPlaceB;
-
+  bool? isCarTypeSelected;
   bool isChecked1 = true;
   bool isChecked2 = false;
-
+  bool CurencySelected = false;
   bool isAdd1 = true;
   bool isAdd2 = false;
-
+  bool isPriceGiven = false;
   String isEmpWidget = '';
-
+  String? errorText1;
+  String? errorText2;
+  String? errorText3;
+  String? errorText4;
+  String? errorText5;
+  String? adressErrorText1;
+  String? adressErrorText2;
+  String ChoosenDate = '';
   var selectPlaceA = TextEditingController();
   var selectPlaceB = TextEditingController();
 
@@ -75,7 +82,7 @@ class _AutoCOState extends State<AutoCO> {
   DateTime selectedDate = DateTime.now();
 
   var customFormat = DateFormat('yyyy.MM.dd');
-
+  var isDateSelected = false;
   List<String> currency_name = [];
   List<String> currency_id = [];
 
@@ -106,8 +113,9 @@ class _AutoCOState extends State<AutoCO> {
           DateTime.now().year, DateTime.now().month, DateTime.now().day),
       maxTime: DateTime(DateTime.now().year + 1),
       onConfirm: (date) {
+        ChoosenDate = date.toString().split('.')[0];
         print('confirm $date');
-
+        isDateSelected = false;
         setState(() {
           tripDate.text = new DateFormat('yyyy.MM.dd').format(date);
         });
@@ -138,7 +146,7 @@ class _AutoCOState extends State<AutoCO> {
 
     currency_name = [];
     currency_id = [];
-
+    tripDate.text = '';
     final pm = ProfileModel();
     pm.setupLocale(context).then((value) {
       print(pm.token);
@@ -259,18 +267,19 @@ class _AutoCOState extends State<AutoCO> {
                       controller: orderName,
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        labelText:
-                            '${AppLocalizations.of(context)!.opisanieGruz} *',
-                        isDense: true,
-                        fillColor: provider.selectedThemeMode == ThemeMode.dark
-                            ? Color.fromRGBO(53, 54, 61, 1)
-                            : Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(228, 232, 250, 1)),
-                        ),
-                      ),
+                          labelText:
+                              '${AppLocalizations.of(context)!.opisanieGruz} *',
+                          isDense: true,
+                          fillColor:
+                              provider.selectedThemeMode == ThemeMode.dark
+                                  ? Color.fromRGBO(53, 54, 61, 1)
+                                  : Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromRGBO(228, 232, 250, 1)),
+                          ),
+                          errorText: errorText1),
                     ),
                     SizedBox(height: 10),
                     TextFormField(
@@ -278,18 +287,19 @@ class _AutoCOState extends State<AutoCO> {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText:
-                            '${AppLocalizations.of(context)!.vesGruz}(${AppLocalizations.of(context)!.tonna}) *',
-                        isDense: true,
-                        fillColor: provider.selectedThemeMode == ThemeMode.dark
-                            ? Color.fromRGBO(53, 54, 61, 1)
-                            : Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(228, 232, 250, 1)),
-                        ),
-                      ),
+                          labelText:
+                              '${AppLocalizations.of(context)!.vesGruz}(${AppLocalizations.of(context)!.tonna}) *',
+                          isDense: true,
+                          fillColor:
+                              provider.selectedThemeMode == ThemeMode.dark
+                                  ? Color.fromRGBO(53, 54, 61, 1)
+                                  : Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromRGBO(228, 232, 250, 1)),
+                          ),
+                          errorText: errorText2),
                     ),
                     // SizedBox(height: 10),
                     // TextFormField(
@@ -307,17 +317,18 @@ class _AutoCOState extends State<AutoCO> {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.visota,
-                        isDense: true,
-                        fillColor: provider.selectedThemeMode == ThemeMode.dark
-                            ? Color.fromRGBO(53, 54, 61, 1)
-                            : Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(228, 232, 250, 1)),
-                        ),
-                      ),
+                          labelText: AppLocalizations.of(context)!.visota,
+                          isDense: true,
+                          fillColor:
+                              provider.selectedThemeMode == ThemeMode.dark
+                                  ? Color.fromRGBO(53, 54, 61, 1)
+                                  : Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromRGBO(228, 232, 250, 1)),
+                          ),
+                          errorText: errorText3),
                     ),
                     SizedBox(height: 10),
                     TextFormField(
@@ -325,17 +336,18 @@ class _AutoCOState extends State<AutoCO> {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.shirina,
-                        isDense: true,
-                        fillColor: provider.selectedThemeMode == ThemeMode.dark
-                            ? Color.fromRGBO(53, 54, 61, 1)
-                            : Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(228, 232, 250, 1)),
-                        ),
-                      ),
+                          labelText: AppLocalizations.of(context)!.shirina,
+                          isDense: true,
+                          fillColor:
+                              provider.selectedThemeMode == ThemeMode.dark
+                                  ? Color.fromRGBO(53, 54, 61, 1)
+                                  : Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromRGBO(228, 232, 250, 1)),
+                          ),
+                          errorText: errorText4),
                     ),
                     SizedBox(height: 10),
                     TextFormField(
@@ -343,17 +355,18 @@ class _AutoCOState extends State<AutoCO> {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.dlina,
-                        isDense: true,
-                        fillColor: provider.selectedThemeMode == ThemeMode.dark
-                            ? Color.fromRGBO(53, 54, 61, 1)
-                            : Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(228, 232, 250, 1)),
-                        ),
-                      ),
+                          labelText: AppLocalizations.of(context)!.dlina,
+                          isDense: true,
+                          fillColor:
+                              provider.selectedThemeMode == ThemeMode.dark
+                                  ? Color.fromRGBO(53, 54, 61, 1)
+                                  : Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromRGBO(228, 232, 250, 1)),
+                          ),
+                          errorText: errorText5),
                     ),
                     SizedBox(height: 10),
 
@@ -399,21 +412,33 @@ class _AutoCOState extends State<AutoCO> {
 
                     CarTypes.length == 0
                         ? Text('Нет данных по типу кузова')
-                        : DropdownSearch<String>(
-                            mode: Mode.BOTTOM_SHEET,
-                            showSearchBox: true,
-                            showSelectedItem: true,
-                            items: CarTypes,
-                            // label: "Валюта",
-                            selectedItem: CarTypes.first,
-                            onChanged: (newValue) {
-                              var id = CarTypeDet.carTypes.where(
-                                  (element) => element.nameRu == newValue);
+                        : Column(
+                            children: [
+                              DropdownSearch<String>(
+                                mode: Mode.BOTTOM_SHEET,
+                                showSearchBox: true,
+                                showSelectedItem: true,
+                                items: CarTypes,
+                                // label: "Валюта",
+                                selectedItem: "Шанақ түрін таңдаңыз",
+                                onChanged: (newValue) {
+                                  isCarTypeSelected = true;
+                                  var id = CarTypeDet.carTypes.where(
+                                      (element) => element.nameRu == newValue);
 
-                              carTypeId.text = (id.last.carTypeId).toString();
-                              print(carTypeId.text);
-                              setState(() {});
-                            },
+                                  carTypeId.text =
+                                      (id.last.carTypeId).toString();
+                                  print(carTypeId.text);
+                                  setState(() {});
+                                },
+                              ),
+                              (isCarTypeSelected == null || isCarTypeSelected!)
+                                  ? SizedBox()
+                                  : Text(
+                                      'Шанақ түрі міндетті',
+                                      style: TextStyle(color: Colors.red),
+                                    )
+                            ],
                           ),
 
                     SizedBox(height: 5),
@@ -515,23 +540,37 @@ class _AutoCOState extends State<AutoCO> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${AppLocalizations.of(context)!.viberiteDatu} *',
+                          ChoosenDate == ''
+                              ? '${AppLocalizations.of(context)!.viberiteDatu} *'
+                              : ChoosenDate,
                           style: textStyle,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        Column(
+                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Container(
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                   border: Border(
                                     top: BorderSide(
-                                        width: 0.5, color: Colors.grey),
+                                        width: 0.5,
+                                        color: isDateSelected
+                                            ? Colors.red
+                                            : Colors.grey),
                                     left: BorderSide(
-                                        width: 0.5, color: Colors.grey),
+                                        width: 0.5,
+                                        color: isDateSelected
+                                            ? Colors.red
+                                            : Colors.grey),
                                     right: BorderSide(
-                                        width: 0.5, color: Colors.grey),
+                                        width: 0.5,
+                                        color: isDateSelected
+                                            ? Colors.red
+                                            : Colors.grey),
                                     bottom: BorderSide(
-                                        width: 0.5, color: Colors.grey),
+                                        width: 0.5,
+                                        color: isDateSelected
+                                            ? Colors.red
+                                            : Colors.grey),
                                   ),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
@@ -568,6 +607,12 @@ class _AutoCOState extends State<AutoCO> {
                                 ),
                               ),
                             ),
+                            isDateSelected
+                                ? Text(
+                                    'Күнді таңдау міндетті',
+                                    style: TextStyle(color: Colors.red),
+                                  )
+                                : SizedBox()
                           ],
                         ),
                       ],
@@ -608,6 +653,8 @@ class _AutoCOState extends State<AutoCO> {
                               controller: bookerOfferPrice,
                               style: TextStyle(fontSize: 15),
                               decoration: InputDecoration(
+                                  errorText:
+                                      isPriceGiven ? 'Баға міндетті' : null,
                                   isDense: true,
                                   fillColor: provider.selectedThemeMode ==
                                           ThemeMode.dark
@@ -629,23 +676,34 @@ class _AutoCOState extends State<AutoCO> {
                         new Flexible(
                           flex: 3,
                           child: Padding(
-                            padding: const EdgeInsets.all(1.0),
-                            child: new DropdownSearch<String>(
-                              mode: Mode.BOTTOM_SHEET,
-                              showSearchBox: true,
-                              showSelectedItem: true,
-                              items: currency_name,
-                              label: AppLocalizations.of(context)!.currency,
-                              selectedItem:
-                                  AppLocalizations.of(context)!.select,
-                              onChanged: (newValue) {
-                                cur_id = currency_id[
-                                    currency_name.indexOf(newValue!)];
-                                setState(() {});
-                              },
-                            ),
-                          ),
-                        ),
+                              padding: const EdgeInsets.all(1.0),
+                              child: Column(
+                                children: [
+                                  CurencySelected
+                                      ? Text(
+                                          'Валюта міндетті',
+                                          style: TextStyle(color: Colors.red),
+                                        )
+                                      : SizedBox(),
+                                  new DropdownSearch<String>(
+                                    mode: Mode.BOTTOM_SHEET,
+                                    showSearchBox: true,
+                                    showSelectedItem: true,
+                                    items: currency_name,
+                                    label:
+                                        AppLocalizations.of(context)!.currency,
+                                    selectedItem:
+                                        AppLocalizations.of(context)!.select,
+                                    onChanged: (newValue) {
+                                      CurencySelected = false;
+                                      cur_id = currency_id[
+                                          currency_name.indexOf(newValue!)];
+                                      setState(() {});
+                                    },
+                                  ),
+                                ],
+                              )),
+                        )
                       ],
                     ),
                     SizedBox(height: 20),
@@ -662,7 +720,83 @@ class _AutoCOState extends State<AutoCO> {
                             horizontal: 100, vertical: 20)),
                     onPressed: () {
                       print('Creating order==>');
-
+                      if (orderName.text == '') {
+                        errorText1 = 'Жүк сипаттамасы міндетті';
+                        setState(() {});
+                        return null;
+                      } else {
+                        errorText1 = null;
+                      }
+                      if (lugWeigth.text == '') {
+                        errorText2 = 'Жүк салмағы міндетті';
+                        setState(() {});
+                        return null;
+                      } else {
+                        errorText2 = null;
+                      }
+                      if (lugHeight.text == '') {
+                        errorText3 = 'Жүк биіктігі міндетті';
+                        setState(() {});
+                        return null;
+                      } else {
+                        errorText3 = null;
+                      }
+                      if (lugWidth.text == '') {
+                        errorText4 = 'Жүк ені міндетті';
+                        setState(() {});
+                        return null;
+                      } else {
+                        errorText4 = null;
+                      }
+                      if (lugDepth.text == '') {
+                        errorText5 = 'Жүк ұзындығы міндетті';
+                        setState(() {});
+                        return null;
+                      } else {
+                        errorText5 = null;
+                      }
+                      if (selectedPlaceA == null) {
+                        adressErrorText1 = 'Адресс міндетті';
+                        setState(() {});
+                        return null;
+                      } else {
+                        adressErrorText1 = null;
+                      }
+                      if (selectedPlaceB == null) {
+                        adressErrorText2 = 'Адресс міндетті';
+                        setState(() {});
+                        return null;
+                      } else {
+                        adressErrorText2 = null;
+                      }
+                      if (tripDate.text == '') {
+                        isDateSelected = true;
+                        setState(() {});
+                        return null;
+                      } else {
+                        isDateSelected = false;
+                      }
+                      if (bookerOfferPrice.text == '') {
+                        isPriceGiven = true;
+                        setState(() {});
+                        return null;
+                      } else {
+                        isPriceGiven = false;
+                      }
+                      if (cur_id == '0') {
+                        CurencySelected = true;
+                        setState(() {});
+                        return null;
+                      } else {
+                        CurencySelected = false;
+                      }
+                      if (isCarTypeSelected == null || !isCarTypeSelected!) {
+                        isCarTypeSelected = false;
+                        setState(() {});
+                        return null;
+                      } else {
+                        isCarTypeSelected = true;
+                      }
                       var countryA = selectedPlaceA!.addressComponents!
                           .where((e) => e.types.first == 'country')
                           .first
@@ -798,6 +932,7 @@ class _AutoCOState extends State<AutoCO> {
             keyboardType: TextInputType.multiline,
             controller: selectPlaceA,
             decoration: InputDecoration(
+              errorText: adressErrorText1,
               isDense: true,
               fillColor: provider.selectedThemeMode == ThemeMode.dark
                   ? Color.fromRGBO(53, 54, 61, 1)
@@ -844,6 +979,7 @@ class _AutoCOState extends State<AutoCO> {
             keyboardType: TextInputType.multiline,
             controller: selectPlaceB,
             decoration: InputDecoration(
+              errorText: adressErrorText2,
               isDense: true,
               fillColor: provider.selectedThemeMode == ThemeMode.dark
                   ? Color.fromRGBO(53, 54, 61, 1)

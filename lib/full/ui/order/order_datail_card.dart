@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/instance_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:themoviedb/ui/widgets/main_screen/main_list/Current/Order_history.dart';
@@ -10,6 +11,7 @@ import '../../../ui/navigation/main_navigation.dart';
 import '../register/step3_client_fiz_model.dart';
 import 'google_route.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../../controllers/location_controller.dart';
 
 class OrderDatailCardView extends StatefulWidget {
   final dynamic jdata;
@@ -74,6 +76,7 @@ class MyStatefulWidget extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  LocationController locationController = Get.find();
   final dynamic jdata;
   final dynamic myDrivers;
   final dynamic myCars;
@@ -107,6 +110,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   void _myCallback() {
+    locationController.start.value = false;
     setState(() {
       _isPressed = true;
     });

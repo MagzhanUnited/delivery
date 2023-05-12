@@ -1551,7 +1551,8 @@ class _NavigationMiniViewState extends State<NavigationMiniView>
           ),
         );
         if (clickKoridor)
-          _markersKoridor[item['fromAddress'] + item['hallId'].toString()] = marker;
+          _markersKoridor[item['fromAddress'] + item['hallId'].toString()] =
+              marker;
 
         final marker2 = Marker(
           icon:
@@ -1575,7 +1576,8 @@ class _NavigationMiniViewState extends State<NavigationMiniView>
           ),
         );
         if (clickKoridor)
-          _markersKoridor[item['toAddress'] + item['hallId'].toString()] = marker2;
+          _markersKoridor[item['toAddress'] + item['hallId'].toString()] =
+              marker2;
 
         c = item['hallType'] == 1
             ? Color.fromARGB(255, 40, 122, 198)

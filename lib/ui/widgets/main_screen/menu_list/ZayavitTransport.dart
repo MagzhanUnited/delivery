@@ -29,10 +29,12 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
 
   PickResult? selectedPlaceA;
   PickResult? selectedPlaceB;
-
+  bool? isDriverSelected;
+  bool? isCarSelected;
   bool isChecked1 = true;
   bool isChecked2 = false;
-
+  String temp1 = '';
+  String temp2 = '';
   bool isAdd1 = true;
   bool isAdd2 = false;
 
@@ -229,16 +231,18 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
 
   dropDown1() {
     String testD = '';
+
     dynamic D = [];
     for (var item in drivers) {
       var value = '${item['firstName']} ${item['lastName']} ${item['iin']}';
       D.add(value);
       testD = value;
     }
+    D.add('Жүргізушіні таңдаңыз');
 
     final sugars = D;
     final sugars111 = D as List;
-    String? _currentSugars = testD;
+    String? _currentSugars = 'Жүргізушіні таңдаңыз';
     return sugars111.length > 0
         ? DropdownButtonFormField<String>(
             isExpanded: true,
@@ -259,6 +263,12 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
             }).toList(),
             onChanged: (val) => setState(
               () {
+                if (val == 'Жүргізушіні таңдаңыз') {
+                  isDriverSelected = false;
+                  return null;
+                }
+                isDriverSelected = true;
+                setState(() {});
                 _currentSugars = val;
                 print(_currentSugars);
                 int ind = sugars.indexOf(_currentSugars.toString());
@@ -274,6 +284,8 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
   dropDown2() {
     String testD = '';
     dynamic D = [];
+    D.add('Көлікті тандаңыз');
+
     for (var item in cars) {
       var value =
           '${item['carTypeNameRu']} ${item['brandNameRu']} ${item['modelNameRu']} ${item['modelYear']} ${item['carNumber']}';
@@ -283,7 +295,7 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
 
     final sugars = D;
     final sugars111 = D as List;
-    String? _currentSugars = testD;
+    String _currentSugars = 'Көлікті тандаңыз';
     return sugars111.length > 0
         ? DropdownButtonFormField<String>(
             isExpanded: true,
@@ -303,17 +315,75 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
               );
             }).toList(),
             onChanged: (val) => setState(() {
-              _currentSugars = val;
+              // print(cars[ind]['carId']);
+              if (val == 'Көлікті тандаңыз') {
+                isCarSelected = false;
+                return null;
+              }
+              isCarSelected = true;
+              setState(() {});
+              print('test printing cars: ' + cars.length.toString());
+              print('ONTAP');
+              _currentSugars = val!;
               print(_currentSugars);
               int ind = sugars.indexOf(_currentSugars.toString());
+              ind = ind - 1;
               print(ind);
-              print(cars[ind]['carId']);
-              carId = cars[ind]['carId'];
+              try {
+                carId = cars[ind]['carId'];
+              } catch (e) {
+                print(e);
+              }
               carTypeId = cars[ind]['carTypeId'];
+              print('ONTAP END');
             }),
           )
         : Text('Load...');
   }
+
+  // dropDown2() {
+  //   String testD = '';
+  //   dynamic D = [];
+  //   for (var item in cars) {
+  //     var value =
+  //         '${item['carTypeNameRu']} ${item['brandNameRu']} ${item['modelNameRu']} ${item['modelYear']} ${item['carNumber']}';
+  //     D.add(value);
+  //     testD = value;
+  //   }
+
+  //   final sugars = D;
+  //   final sugars111 = D as List;
+  //   String? _currentSugars = testD;
+  //   return sugars111.length > 0
+  //       ? DropdownButtonFormField<String>(
+  //           isExpanded: true,
+  //           value: _currentSugars,
+  //           items: sugars.map<DropdownMenuItem<String>>((sugar) {
+  //             return DropdownMenuItem(
+  //               value: sugar.toString(),
+  //               child: Text(
+  //                 '$sugar',
+  //                 overflow: TextOverflow.ellipsis,
+  //                 style: TextStyle(
+  //                   fontWeight: FontWeight.normal,
+  //                   fontSize: 13,
+  //                   color: Colors.blueGrey,
+  //                 ),
+  //               ),
+  //             );
+  //           }).toList(),
+  //           onChanged: (val) => setState(() {
+  //             _currentSugars = val;
+  //             print(_currentSugars);
+  //             int ind = sugars.indexOf(_currentSugars.toString());
+  //             print(ind);
+  //             print(cars[ind]['carId']);
+  //             carId = cars[ind]['carId'];
+  //             carTypeId = cars[ind]['carTypeId'];
+  //           }),
+  //         )
+  //       : Text('Load...');
+  // }
 
   final textStyleError = const TextStyle(
       fontWeight: FontWeight.bold, fontSize: 14, color: Colors.red);
@@ -470,7 +540,20 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
                                     // color: AppColors.primaryColors[0],
                                   ),
                                 ),
-                                dropDown1(),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    dropDown1(),
+                                    (isDriverSelected == null ||
+                                            (isDriverSelected != null &&
+                                                isDriverSelected!))
+                                        ? SizedBox()
+                                        : Text(
+                                            'Жүргізуші таңдау міндетті',
+                                            style: TextStyle(color: Colors.red),
+                                          )
+                                  ],
+                                ),
                                 SizedBox(height: 20),
                                 Text(
                                   AppLocalizations.of(context)!.avto,
@@ -480,7 +563,20 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
                                     // color: AppColors.primaryColors[0],
                                   ),
                                 ),
-                                dropDown2()
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    dropDown2(),
+                                    (isCarSelected == null ||
+                                            (isCarSelected != null &&
+                                                isCarSelected!))
+                                        ? SizedBox()
+                                        : Text(
+                                            'Көлікті таңдау міндетті',
+                                            style: TextStyle(color: Colors.red),
+                                          )
+                                  ],
+                                )
                               ],
                             )
                           : Column()
@@ -546,6 +642,16 @@ class _ZayavitTransportState extends State<ZayavitTransport> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
                     onPressed: () {
+                      if ((isDriverSelected == null) || !isDriverSelected!) {
+                        isDriverSelected = false;
+                        setState(() {});
+                        return null;
+                      }
+                      if ((isCarSelected == null) || !isCarSelected!) {
+                        isCarSelected = false;
+                        setState(() {});
+                        return null;
+                      }
                       var allDateNotSel = false;
                       var allPriceNotSel = false;
 

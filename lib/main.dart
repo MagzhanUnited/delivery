@@ -1,12 +1,18 @@
+import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:themoviedb/controllers/location_controller.dart';
 import 'package:themoviedb/providers/provider.dart';
 import 'package:themoviedb/ui/widgets/app/my_app.dart';
 import 'package:themoviedb/ui/widgets/app/my_app_model.dart';
 
 void main() async {
+  LocationController locationController = Get.put(LocationController());
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await Permission.location.request();
@@ -25,6 +31,7 @@ void main() async {
   final app = MyApp(model: model);
   final widget = Provider(model: model, child: app);
   runApp(widget);
+  locationController.main1(locationController);
 }
 
 Future<void> requestCameraPermission() async {
