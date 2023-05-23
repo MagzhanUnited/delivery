@@ -1,7 +1,7 @@
 name: themoviedb
 description: baza рузоперевозок
 publish_to: 'none' 
-version: 1.0.20+22
+version: 1.0.20+23
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
